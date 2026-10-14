@@ -1,0 +1,127 @@
+
+:root {
+  --navy: #0b1426;
+  --gold: #d4af37;
+  --text: #f4f1ea;
+  --muted: rgba(244, 241, 234, 0.6);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ── Header ── */
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .85rem;
+  transition: color .2s ease;
+}
+.back-link:hover { color: var(--gold); }
+
+.page-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  line-height: 1.1;
+  max-width: 16ch;
+  margin-bottom: 1rem;
+}
+.page-title em { color: var(--gold); font-weight: 400; }
+
+.page-sub {
+  color: var(--muted);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.page-foot {
+  color: var(--muted);
+  font-size: .8rem;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* ── Bento tiles ── */
+.bento-tile {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, .06);   /* visible if an image is missing */
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.bento-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: zoom-in;
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+.bento-tile:hover img { transform: scale(1.06); }
+
+.bento-tile figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.5rem 1rem .85rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, .7), transparent);
+  font-size: .8rem;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.bento-tile:hover figcaption { opacity: 1; transform: none; }
+
+/* Touch screens have no hover, so keep captions visible */
+@media (hover: none) {
+  .bento-tile figcaption { opacity: 1; transform: none; }
+}
+
+/* ── Heights per breakpoint (columns come from Bootstrap) ── */
+.bento-short { height: 160px; }
+.bento-tall  { height: 260px; }
+
+@media (min-width: 576px) {
+  .bento-short { height: 200px; }
+  .bento-tall  { height: 300px; }
+}
+/* md+: tall tile matches the 2 stacked rows on the right (200 + 200 + 16 gap) */
+@media (min-width: 768px) {
+  .bento-tall { height: 100%; min-height: 416px; }
+}
+@media (min-width: 1200px) {
+  .bento-short { height: 240px; }
+  .bento-tall  { min-height: 496px; }
+}
+
+/* ── Lightbox arrows ── */
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: background .2s ease;
+}
+.lb-nav:hover { background: var(--gold); color: #000; }
+.lb-prev { left: .75rem; }
+.lb-next { right: .75rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bento-tile img, .bento-tile figcaption { transition: none; }
+}
