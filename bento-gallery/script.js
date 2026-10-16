@@ -1,6 +1,8 @@
-// Lightbox with previous / next navigation
+
 (function () {
-  var photos = Array.prototype.slice.call(document.querySelectorAll('.bento-tile img'));
+  var photos = Array.prototype.slice.call(document.querySelectorAll('.tile-img'));
+  photos.sort(function (a, b) { return Number(a.dataset.i) - Number(b.dataset.i); });
+
   var modalEl = document.getElementById('lightbox');
   var modal = new bootstrap.Modal(modalEl);
   var imgEl = document.getElementById('lightboxImg');
