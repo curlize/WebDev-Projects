@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════════════════════════
    THE JSON
    All of the page's content lives in this one JSON string:
-   your intro, the "currently" strip, the collections and every pick.
+   your intro, the collections and every pick.
    Each pick points to a photo in the images folder ("img").
    ════════════════════════════════════════════════════════════ */
 const PAGE_JSON = `
@@ -10,42 +10,33 @@ const PAGE_JSON = `
     "name": "Charlize Mojares",
     "role": "3rd year BS IT student",
     "bio": "I collect small things that make a day better: songs on repeat, comfort food, places I still want to see. Pick a collection below and have a look. Every entry comes with my reason for loving it.",
-    "chips": ["Coder", "Cozy-lover", "Cherry blossom chaser"],
-    "currently": [
-      { "label": "Listening to", "value": "Blinding Lights, The Weeknd" },
-      { "label": "Watching",     "value": "Spirited Away, again" },
-      { "label": "Craving",      "value": "Sinigang on a rainy day" }
-    ],
     "closing": "The list keeps changing. That is the point."
   },
 
   "categories": [
-    { "name": "Music",  "blurb": "On repeat while I code.",           "color": "#a78bfa" },
-    { "name": "Screen", "blurb": "Films and series I would rewatch.", "color": "#f87171" },
-    { "name": "Food",   "blurb": "Comfort first, always.",            "color": "#fbbf24" },
-    { "name": "Places", "blurb": "Visited, and still on the list.",   "color": "#34d399" }
+    { "name": "Music",  "blurb": "On repeat while I code.",           "color": "#d4af37" },
+    { "name": "Screen", "blurb": "Films and series I would rewatch.", "color": "#d4af37" },
+    { "name": "Food",   "blurb": "Comfort first, always.",            "color": "#d4af37" },
+    { "name": "Places", "blurb": "Visited, and still on the list.",   "color": "#d4af37" }
   ],
 
   "items": [
-    { "id": 1,  "title": "Blinding Lights", "by": "The Weeknd",           "category": "Music",  "year": 2020, "rating": 5, "img": "images/music-1.jpg",  "tags": ["synth-pop", "night drive"],   "note": "Instant good mood. Perfect for late-night coding." },
-    { "id": 2,  "title": "Pink + White",    "by": "Frank Ocean",          "category": "Music",  "year": 2016, "rating": 5, "img": "images/music-2.jpg",  "tags": ["r&b", "chill"],               "note": "Sounds like a slow, sunny afternoon." },
-    { "id": 3,  "title": "Levitating",      "by": "Dua Lipa",             "category": "Music",  "year": 2020, "rating": 4, "img": "images/music-3.jpg",  "tags": ["pop", "dance"],               "note": "Impossible to sit still while this plays." },
-    { "id": 4,  "title": "Golden Hour",     "by": "JVKE",                 "category": "Music",  "year": 2022, "rating": 4, "img": "images/music-4.jpg",  "tags": ["pop", "piano"],               "note": "The piano part gets me every time." },
-
-    { "id": 5,  "title": "Spirited Away",   "by": "Hayao Miyazaki",       "category": "Screen", "year": 2001, "rating": 5, "img": "images/screen-1.jpg", "tags": ["animation", "fantasy"],       "note": "Beautiful, strange and comforting all at once." },
-    { "id": 6,  "title": "Your Name",       "by": "Makoto Shinkai",       "category": "Screen", "year": 2016, "rating": 5, "img": "images/screen-2.jpg", "tags": ["anime", "romance"],           "note": "The visuals alone are worth the watch." },
-    { "id": 7,  "title": "Little Women",    "by": "Greta Gerwig",         "category": "Screen", "year": 2019, "rating": 4, "img": "images/screen-3.jpg", "tags": ["drama", "classic"],           "note": "Cozy, warm, and it makes me want to write." },
-    { "id": 8,  "title": "Money Heist",     "by": "Álex Pina",            "category": "Screen", "year": 2017, "rating": 4, "img": "images/screen-4.jpg", "tags": ["thriller", "series"],         "note": "One more episode turned into a whole weekend." },
-
-    { "id": 9,  "title": "Sinigang",        "by": "Filipino classic",     "category": "Food",   "year": null, "rating": 5, "img": "images/food-1.jpg",   "tags": ["comfort", "soup"],            "note": "Sour, hot and perfect on a rainy day." },
-    { "id": 10, "title": "Halo-halo",       "by": "Filipino dessert",     "category": "Food",   "year": null, "rating": 5, "img": "images/food-2.jpg",   "tags": ["dessert", "summer"],          "note": "The best way to survive the heat." },
-    { "id": 11, "title": "Ramen",           "by": "Japanese noodles",     "category": "Food",   "year": null, "rating": 4, "img": "images/food-3.jpg",   "tags": ["noodles", "comfort"],         "note": "A big warm bowl solves most problems." },
-    { "id": 12, "title": "Pizza",           "by": "Always a yes",         "category": "Food",   "year": null, "rating": 4, "img": "images/food-4.jpg",   "tags": ["cheesy", "sharing"],          "note": "Never says no to a slice." },
-
-    { "id": 13, "title": "Kyoto, Japan",    "by": "Dream trip",           "category": "Places", "year": null, "rating": 5, "img": "images/places-1.jpg", "tags": ["cherry blossoms", "temples"], "note": "Top of the travel list, mostly for the cherry blossoms." },
-    { "id": 14, "title": "Palawan",         "by": "Philippines",          "category": "Places", "year": null, "rating": 5, "img": "images/places-2.jpg", "tags": ["island", "beach"],            "note": "Clear water that looks edited, but isn't." },
-    { "id": 15, "title": "Tagaytay",        "by": "Cavite, Philippines",  "category": "Places", "year": null, "rating": 4, "img": "images/places-3.jpg", "tags": ["cool weather", "view"],       "note": "Cool breeze, a great view and bulalo." },
-    { "id": 16, "title": "Baguio",          "by": "Benguet, Philippines", "category": "Places", "year": null, "rating": 4, "img": "images/places-4.jpg", "tags": ["pine trees", "cold"],         "note": "Sweater weather in the middle of the year." }
+    { "id": 1, "title": "Libu-libong Buwan", "by": "Khyle Raphael", "category": "Music", "year": null, "rating": 5, "img": "images/music-1.jpg", "tags": ["opm", "soft"], "note": "Gentle and dreamy. It plays on repeat when I need to calm down." },
+    { "id": 2, "title": "Always", "by": "Daniel Caesar", "category": "Music", "year": 2017, "rating": 5, "img": "images/music-2.jpg", "tags": ["r&b", "slow"], "note": "Smooth and soulful. Perfect for a quiet night." },
+    { "id": 3, "title": "Needy", "by": "Ariana Grande", "category": "Music", "year": 2019, "rating": 4, "img": "images/music-3.jpg", "tags": ["pop", "mellow"], "note": "Soft, honest and somehow always relatable." },
+    { "id": 4, "title": "Nonsense", "by": "Sabrina Carpenter", "category": "Music", "year": 2022, "rating": 4, "img": "images/music-4.jpg", "tags": ["pop", "fun"], "note": "Catchy, playful and an instant mood lifter." },
+    { "id": 5, "title": "Four Sisters and a Wedding", "by": "Cathy Garcia-Molina", "category": "Screen", "year": 2013, "rating": 5, "img": "images/screen-1.jpg", "tags": ["filipino", "family"], "note": "Funny, emotional and so Filipino. I can rewatch it anytime." },
+    { "id": 6, "title": "The Notebook", "by": "Nick Cassavetes", "category": "Screen", "year": 2004, "rating": 5, "img": "images/screen-2.jpg", "tags": ["romance", "classic"], "note": "A classic love story that gets me every time." },
+    { "id": 7, "title": "World War Z", "by": "Marc Forster", "category": "Screen", "year": 2013, "rating": 4, "img": "images/screen-3.jpg", "tags": ["thriller", "zombies"], "note": "Fast, tense and impossible to pause." },
+    { "id": 8, "title": "Locke and Key", "by": "Netflix series", "category": "Screen", "year": 2020, "rating": 4, "img": "images/screen-4.jpg", "tags": ["fantasy", "mystery"], "note": "Magical keys and a mystery that keeps pulling me in." },
+    { "id": 9, "title": "Vanilla Ice Cream", "by": "Always a yes", "category": "Food", "year": null, "rating": 5, "img": "images/food-1.jpg", "tags": ["dessert", "sweet"], "note": "Simple, creamy and the perfect cure for a hot day." },
+    { "id": 10, "title": "Sinigang", "by": "Filipino classic", "category": "Food", "year": null, "rating": 5, "img": "images/food-2.jpg", "tags": ["comfort", "soup"], "note": "Sour, hot and perfect on a rainy day." },
+    { "id": 11, "title": "Sour Gummy Candies", "by": "Guilty pleasure", "category": "Food", "year": null, "rating": 4, "img": "images/food-3.jpg", "tags": ["candy", "sour"], "note": "Sweet, sour and hard to stop at just one." },
+    { "id": 12, "title": "Beef Steak", "by": "Hearty meal", "category": "Food", "year": null, "rating": 4, "img": "images/food-4.jpg", "tags": ["savory", "dinner"], "note": "A proper treat meal, best with rice." },
+    { "id": 13, "title": "Switzerland", "by": "Dream trip", "category": "Places", "year": null, "rating": 5, "img": "images/places-1.jpg", "tags": ["mountains", "lakes"], "note": "Alpine views and little wooden chalets. It looks like a painting." },
+    { "id": 14, "title": "Japan", "by": "Dream trip", "category": "Places", "year": null, "rating": 5, "img": "images/places-2.jpg", "tags": ["culture", "blossoms"], "note": "Cherry blossoms, temples and food. Top of my travel list." },
+    { "id": 15, "title": "Philippines", "by": "Home", "category": "Places", "year": null, "rating": 4, "img": "images/places-3.jpg", "tags": ["islands", "home"], "note": "So many beaches and islands I still want to explore." },
+    { "id": 16, "title": "Iceland", "by": "Dream trip", "category": "Places", "year": null, "rating": 4, "img": "images/places-4.jpg", "tags": ["northern lights", "nature"], "note": "Waterfalls, glaciers and maybe the northern lights." }
   ]
 }
 `;
@@ -83,17 +74,8 @@ function picksOf(catName) {
 /* ── Intro ── */
 function renderIntro() {
   var p = data.profile;
-  document.getElementById('kicker').textContent = p.name + ' · ' + p.role;
   document.getElementById('bio').textContent = p.bio;
   document.getElementById('closing').textContent = p.closing;
-  document.getElementById('chips').innerHTML = p.chips.map(function (c) {
-    return '<span class="chip">' + esc(c) + '</span>';
-  }).join('') + '<span class="chip">' + data.items.length + ' favorites</span>';
-  document.getElementById('currently').innerHTML = p.currently.map(function (c) {
-    return '<div class="col-12 col-sm-6 col-lg-4"><div class="cur">' +
-      '<div class="cur-label">' + esc(c.label) + '</div>' +
-      '<div class="cur-value">' + esc(c.value) + '</div></div></div>';
-  }).join('');
 }
 
 /* ── Collection picker (circles) ── */
