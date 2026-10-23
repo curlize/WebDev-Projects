@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Favorite Things | WebDev Projects</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav class="container-fluid px-4 px-lg-5 py-4 d-flex justify-content-between align-items-center">
+    <a href="../index.html" class="back-link">&larr; All web dev projects</a>
+    <a href="https://github.com/curlize/WebDev-Projects/tree/main/assignment-2" target="_blank" rel="noopener noreferrer" class="back-link">View source</a>
+  </nav>
+
+  <!-- Intro (filled from the JSON) -->
+  <header class="container-fluid px-4 px-lg-5 pt-3 pb-4 intro">
+    <p class="intro-kicker" id="kicker"></p>
+    <h1 class="page-title">Things I keep <em>coming back to.</em></h1>
+    <p class="intro-bio" id="bio"></p>
+    <div class="intro-chips" id="chips"></div>
+    <div class="row g-3 mt-2" id="currently" aria-label="What I'm into right now"></div>
+  </header>
+
+  <!-- Collection picker: tap a circle to switch the whole page -->
+  <section class="container-fluid px-4 px-lg-5" aria-label="Collections">
+    <p class="picker-label">Choose a collection</p>
+    <div class="swatch-bar" id="swatches" role="tablist" aria-label="Collections"></div>
+  </section>
+
+  <!-- Stage: the selected collection -->
+  <main class="container-fluid px-4 px-lg-5 stage" id="stage">
+    <div class="stage-head d-flex flex-wrap justify-content-between align-items-end gap-3">
+      <div>
+        <p class="stage-index" id="stageIndex"></p>
+        <h2 class="stage-title" id="stageTitle"></h2>
+        <p class="stage-blurb" id="stageBlurb"></p>
+        <p class="stage-meta" id="stageMeta"></p>
+      </div>
+      <div class="stage-nav" role="group" aria-label="Switch collection">
+        <button type="button" id="surprise" class="btn btn-outline-gold btn-sm me-2 px-3">Surprise me</button>
+        <button type="button" id="prevCol" class="nav-circle" aria-label="Previous collection">&#8249;</button>
+        <button type="button" id="nextCol" class="nav-circle" aria-label="Next collection">&#8250;</button>
+      </div>
+    </div>
+
+    <!-- Scrolling strip of this collection's titles -->
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+    <div id="picks" class="picks"></div>
+  </main>
+
+  <p class="container-fluid px-4 px-lg-5 closing" id="closing"></p>
+
+  <footer class="container-fluid px-4 px-lg-5 py-4 page-foot">
+    Charlize Mojares &middot; WebDev Projects &middot; Assignment 2
+  </footer>
+
+  <!-- Details modal -->
+  <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="detailTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content detail-content">
+        <div class="detail-pic">
+          <div class="detail-img" id="detailPic"></div>
+          <button type="button" class="btn-close detail-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="detail-over">
+            <h2 class="detail-title" id="detailTitle"></h2>
+            <p class="detail-by" id="detailBy"></p>
+          </div>
+        </div>
+        <div class="modal-body p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3"><div id="detailDots"></div><span class="proj-num-sm" id="detailPos"></span></div>
+          <blockquote class="detail-note" id="detailNote"></blockquote>
+          <div id="detailTags" class="mb-4"></div>
+          <div class="d-flex gap-2">
+            <button type="button" id="prevPick" class="btn btn-outline-gold flex-fill">&larr; Previous</button>
+            <button type="button" id="nextPick" class="btn btn-gold flex-fill">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
