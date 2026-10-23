@@ -416,3 +416,37 @@ body::before {
 @keyframes shine { to { transform: translateX(120%); } }
 .badge-top, .pick-over { z-index: 2; }
 @media (prefers-reduced-motion: reduce) { .pick-feature::before { animation: none; display: none; } }
+
+/* ── Hero: headline on the left, collection picker on the right ── */
+.hero {
+  display: grid;
+  gap: 2rem 3rem;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+.hero .intro { padding: .5rem 0; }
+.hero .page-title { margin-bottom: 1.25rem; }
+
+@media (min-width: 992px) {
+  .hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+}
+
+.picker-panel {
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, .03);
+  padding: 1.5rem 1.75rem 1rem;
+  box-shadow: 0 30px 70px -40px color-mix(in srgb, var(--c) 55%, transparent);
+}
+.picker-panel .picker-label { margin: 0; }
+.picker-panel .swatch-bar {
+  margin: 0 -.5rem;
+  padding: 1.5rem .5rem .75rem;
+  gap: .75rem;
+  justify-content: space-between;
+}
+.picker-panel .swatch-dot {
+  width: clamp(64px, 6.5vw, 92px);
+  height: clamp(64px, 6.5vw, 92px);
+}

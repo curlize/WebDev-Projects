@@ -22,16 +22,18 @@
   </nav>
 
   <!-- Intro (filled from the JSON) -->
-  <header class="container-fluid px-4 px-lg-5 pt-3 pb-4 intro">
+  <div class="container-fluid px-4 px-lg-5 hero">
+  <header class="intro">
     <h1 class="page-title">Things I keep <em>coming back to.</em></h1>
     <p class="intro-bio" id="bio"></p>
   </header>
 
   <!-- Collection picker: tap a circle to switch the whole page -->
-  <section class="container-fluid px-4 px-lg-5" aria-label="Collections">
+  <section class="picker-panel" aria-label="Collections">
     <p class="picker-label">Choose a collection</p>
     <div class="swatch-bar" id="swatches" role="tablist" aria-label="Collections"></div>
   </section>
+  </div>
 
   <!-- Stage: the selected collection -->
   <main class="container-fluid px-4 px-lg-5 stage" id="stage">
@@ -43,7 +45,6 @@
         <p class="stage-meta" id="stageMeta"></p>
       </div>
       <div class="stage-nav" role="group" aria-label="Switch collection">
-        <button type="button" id="surprise" class="btn btn-outline-gold btn-sm me-2 px-3">Surprise me</button>
         <button type="button" id="prevCol" class="nav-circle" aria-label="Previous collection">&#8249;</button>
         <button type="button" id="nextCol" class="nav-circle" aria-label="Next collection">&#8250;</button>
       </div>

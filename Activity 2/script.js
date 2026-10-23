@@ -21,7 +21,7 @@ const PAGE_JSON = `
   ],
 
   "items": [
-    { "id": 1, "title": "Libu-libong Buwan", "by": "Khyle Raphael", "category": "Music", "year": null, "rating": 5, "img": "images/music-1.jpg", "tags": ["opm", "soft"], "note": "Gentle and dreamy. It plays on repeat when I need to calm down." },
+    { "id": 1, "title": "Libu-libong Buwan", "by": "Khyle Raphael", "category": "Music", "year": 2025, "rating": 5, "img": "images/music-1.jpg", "tags": ["opm", "soft"], "note": "Gentle and dreamy. It plays on repeat when I need to calm down." },
     { "id": 2, "title": "Always", "by": "Daniel Caesar", "category": "Music", "year": 2017, "rating": 5, "img": "images/music-2.jpg", "tags": ["r&b", "slow"], "note": "Smooth and soulful. Perfect for a quiet night." },
     { "id": 3, "title": "Needy", "by": "Ariana Grande", "category": "Music", "year": 2019, "rating": 4, "img": "images/music-3.jpg", "tags": ["pop", "mellow"], "note": "Soft, honest and somehow always relatable." },
     { "id": 4, "title": "Nonsense", "by": "Sabrina Carpenter", "category": "Music", "year": 2022, "rating": 4, "img": "images/music-4.jpg", "tags": ["pop", "fun"], "note": "Catchy, playful and an instant mood lifter." },
@@ -207,12 +207,6 @@ document.getElementById('swatches').addEventListener('click', function (e) {
 });
 document.getElementById('prevCol').addEventListener('click', function () { setCollection(current - 1, true); });
 document.getElementById('nextCol').addEventListener('click', function () { setCollection(current + 1, true); });
-
-document.getElementById('surprise').addEventListener('click', function () {
-  var item = data.items[Math.floor(Math.random() * data.items.length)];
-  setCollection(data.categories.findIndex(function (c) { return c.name === item.category; }), true);
-  openPick(item.id);
-});
 
 var picksEl = document.getElementById('picks');
 picksEl.addEventListener('click', function (e) {
