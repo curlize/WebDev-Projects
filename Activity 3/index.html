@@ -1,0 +1,567 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NASA | Space Explorer</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #080d1b;
+      color: #eef2ff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .navbar {
+      background: rgba(12, 20, 40, 0.95);
+      border-bottom: 1px solid #202d4b;
+    }
+
+    .brand {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .hero {
+      background:
+        linear-gradient(90deg, rgba(5, 10, 25, .95), rgba(5, 10, 25, .5)),
+        url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1800');
+      background-size: cover;
+      background-position: center;
+      padding: 95px 20px;
+      border-bottom: 1px solid #202d4b;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+    }
+
+    .hero p {
+      color: #b8c4df;
+      max-width: 600px;
+    }
+
+    .section-label {
+      color: #8ca8ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .discovery-card {
+      background: #111a30;
+      border: 1px solid #253351;
+      border-radius: 14px;
+      overflow: hidden;
+      height: 100%;
+      transition: .3s;
+    }
+
+    .discovery-card:hover {
+      transform: translateY(-6px);
+      border-color: #718dff;
+      box-shadow: 0 12px 30px rgba(55, 95, 200, .15);
+    }
+
+    .discovery-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #18233d;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .discovery-title {
+      font-size: 17px;
+      font-weight: 700;
+      min-height: 45px;
+    }
+
+    .discovery-date {
+      color: #91a9ff;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #aebbd3;
+      font-size: 13px;
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 65px;
+    }
+
+    .btn-space {
+      background: #536fff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 17px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn-space:hover {
+      background: #7188ff;
+      color: white;
+    }
+
+    .page-link {
+      background: #111a30;
+      border-color: #293858;
+      color: #c9d5f5;
+      cursor: pointer;
+    }
+
+    .page-link:hover {
+      background: #536fff;
+      color: white;
+    }
+
+    .page-item.disabled .page-link {
+      background: #111a30;
+      color: #56627a;
+      border-color: #293858;
+    }
+
+    .modal-content {
+      background: #111a30;
+      color: white;
+      border: 1px solid #344568;
+    }
+
+    .modal-header {
+      border-bottom-color: #293858;
+    }
+
+    .modal-footer {
+      border-top-color: #293858;
+    }
+
+    .modal-description {
+      color: #b8c4df;
+      font-size: 14px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .loading {
+      color: #aebbd3;
+      padding: 70px 0;
+    }
+
+    footer {
+      background: #0c1428;
+      border-top: 1px solid #202d4b;
+      color: #8493b1;
+    }
+
+    .accent {
+      color: #8ca8ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="#">✦ NASA EXPLORER</a>
+      <span class="text-secondary small">DISCOVER THE UNIVERSE</span>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="section-label mb-3">ASTRONOMY PICTURE OF THE DAY</div>
+
+      <h1>Explore Beyond<br>Our World.</h1>
+
+      <p class="mt-3">
+        Discover the beauty of the universe through NASA's daily
+        collection of astronomical photographs, galaxies, planets,
+        and extraordinary cosmic discoveries.
+      </p>
+
+      <a href="#discoveries" class="btn btn-space mt-3">
+        Explore Discoveries →
+      </a>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container py-5" id="discoveries">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+      <div>
+        <div class="section-label">THE COSMOS COLLECTION</div>
+        <h2 class="fw-bold mt-2">Space Discoveries</h2>
+        <p class="text-secondary small mb-0">
+          Explore NASA's featured astronomical images.
+        </p>
+      </div>
+
+      <div class="text-end">
+        <div class="text-secondary small">CURRENT PAGE</div>
+        <div class="accent fw-bold fs-5" id="currentPage">1</div>
+      </div>
+    </div>
+
+    <!-- PAGINATION -->
+    <nav aria-label="Page navigation" class="mb-4">
+      <ul class="pagination">
+        <li class="page-item" id="prevButton">
+          <a class="page-link" onclick="prev()">← Previous</a>
+        </li>
+
+        <li class="page-item active">
+          <span class="page-link" id="pageNumber">1</span>
+        </li>
+
+        <li class="page-item">
+          <a class="page-link" onclick="next()">Next →</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- API RESULTS -->
+    <div class="row g-4" id="parent">
+      <div class="col-12 text-center loading">
+        <div class="spinner-border text-primary mb-3"></div>
+        <p>Connecting to NASA...</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <small class="text-secondary">
+        Data provided by NASA Astronomy Picture of the Day API
+      </small>
+    </div>
+
+  </main>
+
+  <!-- DETAILS MODAL -->
+  <div class="modal fade" id="detailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="modalTitle">Discovery Details</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div id="modalMedia" class="mb-3"></div>
+
+          <div class="accent small mb-2" id="modalDate"></div>
+
+          <p class="modal-description" id="modalDescription"></p>
+
+          <div id="copyright" class="text-secondary small"></div>
+        </div>
+
+        <div class="modal-footer">
+          <a href="#" target="_blank" id="originalLink" class="btn btn-space">
+            View Original →
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-4 mt-4">
+    <div class="container text-center">
+      <div class="brand mb-2">NASA EXPLORER</div>
+      <small>Bringing the wonders of space closer to you.</small>
+      <p class="small mt-2 mb-0">Powered by NASA Open APIs | APOD</p>
+    </div>
+  </footer>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    // NASA API CONFIGURATION
+    const apiKey = 'DEMO_KEY';
+    const apiURL = 'https://api.nasa.gov/planetary/apod';
+
+    // PAGINATION SETTINGS
+    var page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+    var perPageLoad = 6;
+
+    var elParent = document.getElementById("parent");
+    var elCurrentPage = document.getElementById("currentPage");
+    var elPageNumber = document.getElementById("pageNumber");
+
+    var discoveries = [];
+
+    // FORMAT DATE AS YYYY-MM-DD
+    function formatDate(date) {
+      return date.toISOString().split('T')[0];
+    }
+
+    // ESCAPE API TEXT BEFORE DISPLAYING IT
+    function escapeHTML(text) {
+      return String(text || '').replace(/[&<>"']/g, function(char) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char];
+      });
+    }
+
+    // GET NASA DISCOVERIES
+    const getDiscoveries = async () => {
+
+      elParent.innerHTML = `
+        <div class="col-12 text-center loading">
+          <div class="spinner-border text-primary mb-3"></div>
+          <p>Discovering the universe...</p>
+        </div>
+      `;
+
+      elCurrentPage.innerHTML = page;
+      elPageNumber.innerHTML = page;
+
+      document.getElementById("prevButton").classList.toggle("disabled", page === 1);
+
+      // Calculate date range for each page
+      var endDate = new Date();
+      endDate.setUTCHours(0, 0, 0, 0);
+      endDate.setUTCDate(endDate.getUTCDate() - ((page - 1) * perPageLoad));
+
+      var startDate = new Date(endDate);
+      startDate.setUTCDate(startDate.getUTCDate() - (perPageLoad - 1));
+
+      var start = formatDate(startDate);
+      var end = formatDate(endDate);
+
+      var url = apiURL +
+        '?api_key=' + apiKey +
+        '&start_date=' + start +
+        '&end_date=' + end;
+
+      try {
+
+        var response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error('NASA API returned an error: ' + response.status);
+        }
+
+        var data = await response.json();
+
+        // Display newest discoveries first
+        discoveries = data.reverse();
+
+        elParent.innerHTML = '';
+
+        if (discoveries.length === 0) {
+          elParent.innerHTML = `
+            <div class="col-12 text-center text-secondary py-5">
+              No discoveries found for this period.
+            </div>
+          `;
+          return;
+        }
+
+        // Display NASA discoveries
+        for (var i = 0; i < discoveries.length; i++) {
+
+          var discovery = discoveries[i];
+
+          var title = escapeHTML(discovery.title);
+          var date = escapeHTML(discovery.date);
+          var explanation = escapeHTML(discovery.explanation);
+
+          var picture = discovery.media_type === 'video'
+            ? (discovery.thumbnail_url || '')
+            : discovery.url;
+
+          var imageHTML = picture
+            ? `<img src="${escapeHTML(picture)}" class="discovery-image" alt="${title}" loading="lazy">`
+            : `<div class="discovery-image d-flex align-items-center justify-content-center text-secondary">Preview unavailable</div>`;
+
+          elParent.innerHTML += `
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="discovery-card">
+
+                ${imageHTML}
+
+                <div class="card-content">
+
+                  <div class="discovery-date mb-2">
+                    ✦ ${date}
+                  </div>
+
+                  <div class="discovery-title mb-2">
+                    ${title}
+                  </div>
+
+                  <p class="description">
+                    ${explanation}
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+
+                    <span class="badge rounded-pill text-bg-dark border border-secondary">
+                      ${discovery.media_type === 'video' ? 'VIDEO' : 'IMAGE'}
+                    </span>
+
+                    <button class="btn btn-space"
+                      onclick="showDetails(${i})">
+                      View Details →
+                    </button>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+      } catch (error) {
+
+        elParent.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <h5 class="text-danger">Unable to load discoveries.</h5>
+            <p class="text-secondary">${escapeHTML(error.message)}</p>
+            <button class="btn btn-space" onclick="getDiscoveries()">
+              Try Again
+            </button>
+          </div>
+        `;
+
+        console.error(error);
+      }
+    };
+
+    // SHOW DISCOVERY DETAILS
+    function showDetails(index) {
+
+      var discovery = discoveries[index];
+
+      document.getElementById("modalTitle").innerHTML =
+        escapeHTML(discovery.title);
+
+      document.getElementById("modalDate").innerHTML =
+        'DISCOVERY DATE: ' + escapeHTML(discovery.date);
+
+      document.getElementById("modalDescription").innerHTML =
+        escapeHTML(discovery.explanation);
+
+      document.getElementById("copyright").innerHTML =
+        discovery.copyright
+          ? '© ' + escapeHTML(discovery.copyright)
+          : 'Image credit: NASA';
+
+      var media = '';
+
+      if (discovery.media_type === 'video') {
+
+        media = `
+          <iframe
+            src="${escapeHTML(discovery.url)}"
+            class="w-100"
+            style="height:400px; border:0;"
+            allowfullscreen>
+          </iframe>
+        `;
+
+      } else {
+
+        media = `
+          <img
+            src="${escapeHTML(discovery.hdurl || discovery.url)}"
+            class="img-fluid rounded"
+            alt="${escapeHTML(discovery.title)}">
+        `;
+      }
+
+      document.getElementById("modalMedia").innerHTML = media;
+
+      document.getElementById("originalLink").href = discovery.url;
+
+      var modal = new bootstrap.Modal(
+        document.getElementById("detailsModal")
+      );
+
+      modal.show();
+    }
+
+    // PREVIOUS PAGE
+    function prev() {
+
+      if (page > 1) {
+        page--;
+        updatePage();
+      }
+    }
+
+    // NEXT PAGE
+    function next() {
+
+      page++;
+      updatePage();
+    }
+
+    // UPDATE PAGE AND URL
+    function updatePage() {
+
+      var newURL = new URL(window.location.href);
+      newURL.searchParams.set('page', page);
+
+      history.pushState({}, '', newURL);
+
+      getDiscoveries();
+
+      window.scrollTo({
+        top: document.getElementById("discoveries").offsetTop - 90,
+        behavior: 'smooth'
+      });
+    }
+
+    // HANDLE BROWSER BACK AND FORWARD
+    window.addEventListener('popstate', function() {
+
+      page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+
+      getDiscoveries();
+    });
+
+    // INITIALIZE WEBSITE
+    getDiscoveries();
+
+  </script>
+
+</body>
+</html>
