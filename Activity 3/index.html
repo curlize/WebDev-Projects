@@ -1,567 +1,400 @@
-
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NASA | Space Explorer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NASA | Space Explorer</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#040a1c; --blue:#0b1a42; --blue2:#12285f; --line:#233a7a;
+  --gold:#f5c451; --gold2:#ffdf8a; --goldd:#b8861b; --text:#e9eeff; --mute:#9fb0d8;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+::selection{background:var(--gold);color:#000}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+/* NAV */
+.navbar{background:rgba(4,10,28,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:3px;color:var(--gold)!important}
+.nav-link{color:var(--mute)!important;font-size:13px;font-weight:600;letter-spacing:1px}
+.nav-link:hover{color:var(--gold)!important}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+/* HERO */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;border-bottom:1px solid var(--goldd);
+  background:linear-gradient(180deg,rgba(4,10,28,.35) 0%,var(--navy) 98%),var(--hero-img,none) center/cover,var(--blue)}
+.hero-inner{padding:120px 0 60px;width:100%}
+.kicker{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:4px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:42px;height:2px;background:var(--gold)}
+.hero h1{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.05;margin:18px 0;
+  background:linear-gradient(100deg,#fff 30%,var(--gold2) 70%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:640px;color:#c5d0ee;line-height:1.75}
+.hero-meta{color:var(--gold2);font-size:13px;margin-bottom:6px}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--goldd));color:#1a1203;border:0;border-radius:8px;
+  padding:10px 20px;font-weight:700;font-size:13px;transition:.25s;box-shadow:0 0 0 rgba(245,196,81,0)}
+.btn-gold:hover{color:#000;transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,196,81,.35)}
+.btn-ghost{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:8px;padding:10px 20px;font-weight:600;font-size:13px}
+.btn-ghost:hover{background:rgba(245,196,81,.12);color:var(--gold2)}
 
-  <style>
-    body {
-      background: #080d1b;
-      color: #eef2ff;
-      font-family: 'Inter', sans-serif;
-    }
+/* STATS */
+.stats{margin-top:-1px;background:linear-gradient(90deg,var(--blue),var(--blue2),var(--blue));border-bottom:1px solid var(--line)}
+.stat{padding:22px 10px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:'Orbitron',sans-serif;font-size:1.6rem;color:var(--gold)}
+.stat span{color:var(--mute);font-size:12px}
 
-    .navbar {
-      background: rgba(12, 20, 40, 0.95);
-      border-bottom: 1px solid #202d4b;
-    }
+/* TABS */
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{background:none;border:0;color:var(--mute);padding:14px 22px;font-weight:600;font-size:14px;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tab:hover{color:var(--gold2)}
+.tab.on{color:var(--gold);border-bottom-color:var(--gold)}
+h2.sec{font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.7rem}
 
-    .brand {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 2px;
-      color: #fff;
-    }
+/* CARDS */
+.card-x{background:linear-gradient(180deg,var(--blue),#081431);border:1px solid var(--line);border-radius:14px;overflow:hidden;height:100%;transition:.3s;position:relative}
+.card-x:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 14px 36px rgba(245,196,81,.14)}
+.card-x img,.ph{width:100%;height:210px;object-fit:cover;background:var(--blue2);display:flex;align-items:center;justify-content:center;color:var(--mute)}
+.card-b{padding:18px}
+.c-date{color:var(--gold);font-size:12px;letter-spacing:1px;font-weight:600}
+.c-title{font-weight:700;font-size:16px;margin:6px 0;min-height:44px;line-height:1.35}
+.c-desc{color:var(--mute);font-size:13px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:64px}
+.badge-g{border:1px solid var(--goldd);color:var(--gold2);background:rgba(245,196,81,.08);border-radius:99px;font-size:11px;padding:4px 10px;font-weight:600}
 
-    .hero {
-      background:
-        linear-gradient(90deg, rgba(5, 10, 25, .95), rgba(5, 10, 25, .5)),
-        url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1800');
-      background-size: cover;
-      background-position: center;
-      padding: 95px 20px;
-      border-bottom: 1px solid #202d4b;
-    }
+/* BENTO FEED */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:120px;grid-auto-flow:dense;gap:18px}
+.bento>.col-12{grid-column:1/-1;grid-row:span 3}
+.bc{--ac:var(--gold);position:relative;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;grid-row:span 3;
+  background:linear-gradient(180deg,var(--blue),#081431);border:1px solid var(--line);border-radius:14px;transition:.35s}
+.bc.t-1{--ac:#8ec5ff}.bc.t-2{--ac:#e0a46a}
+.bc:hover{border-color:var(--ac);box-shadow:0 14px 36px rgba(0,0,0,.45)}
+.bc img{width:100%;flex:1;min-height:0;object-fit:cover;transition:transform .7s}
+.bc:hover img{transform:scale(1.06)}
+.bc-t{padding:14px 16px 16px}
+.bc h3{font-size:15px;font-weight:700;line-height:1.35;margin:8px 0 6px}
+.bc p{color:var(--mute);font-size:12.5px;line-height:1.6;margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bc small{color:var(--ac);font-size:11px;font-weight:600}
+.tag{display:inline-block;font-size:11px;font-weight:600;color:var(--ac);border:1px solid var(--ac);border-radius:99px;padding:2px 10px}
+.bc.tall{grid-row:span 4;border-radius:28px 28px 14px 14px}
+.bc.feat{grid-column:span 2;grid-row:span 4;border-radius:22px;border-color:var(--goldd)}
+.bc.feat img{position:absolute;inset:0;height:100%}
+.bc.feat .bc-t{position:relative;margin-top:auto;padding:70px 24px 24px;background:linear-gradient(0deg,rgba(4,10,28,.97) 35%,transparent)}
+.bc.feat h3{font-family:'Orbitron',sans-serif;font-size:1.3rem}
+.bc.feat p{-webkit-line-clamp:4;font-size:13.5px}
+.bc.wide{grid-column:span 2;grid-row:span 2;flex-direction:row;border-radius:14px 44px 14px 14px}
+.bc.wide img{width:45%;flex:none;height:100%}
+.bc.wide .bc-t{flex:1;align-self:center}
+.bc.wide p{-webkit-line-clamp:2}
+@media(max-width:991px){.bento{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:575px){.bento{grid-template-columns:1fr}.bc.feat,.bc.wide{grid-column:auto}
+  .bc.wide{flex-direction:column;grid-row:span 3}.bc.wide img{width:100%;height:auto;flex:1}}
 
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-    }
+/* PAGINATION */
+.page-link{background:var(--blue);border-color:var(--line);color:var(--text);cursor:pointer}
+.page-link:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.page-item.active .page-link{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+.page-item.disabled .page-link{background:var(--blue);color:#4a5b8a;border-color:var(--line)}
 
-    .hero p {
-      color: #b8c4df;
-      max-width: 600px;
-    }
+/* SEARCH */
+.search{display:flex;gap:10px;max-width:640px}
+.search input{flex:1;background:var(--blue);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:11px 16px}
+.search input::placeholder{color:#6f82b3}
+.chip{background:var(--blue);border:1px solid var(--line);color:var(--mute);border-radius:99px;padding:5px 14px;font-size:12px}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
 
-    .section-label {
-      color: #8ca8ff;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 3px;
-    }
+/* NEO TABLE */
+.neo{background:var(--blue);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.neo table{margin:0;color:var(--text);--bs-table-bg:transparent;--bs-table-color:var(--text);--bs-table-border-color:var(--line)}
+.neo th{color:var(--gold);font-size:12px;letter-spacing:1px;background:var(--blue2)!important}
+.bar{height:6px;background:var(--navy);border-radius:9px;min-width:90px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--goldd),var(--gold2))}
+.haz{color:#ff8a6b;font-weight:700}.safe{color:#7fe0b0}
 
-    .discovery-card {
-      background: #111a30;
-      border: 1px solid #253351;
-      border-radius: 14px;
-      overflow: hidden;
-      height: 100%;
-      transition: .3s;
-    }
-
-    .discovery-card:hover {
-      transform: translateY(-6px);
-      border-color: #718dff;
-      box-shadow: 0 12px 30px rgba(55, 95, 200, .15);
-    }
-
-    .discovery-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #18233d;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .discovery-title {
-      font-size: 17px;
-      font-weight: 700;
-      min-height: 45px;
-    }
-
-    .discovery-date {
-      color: #91a9ff;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    .description {
-      color: #aebbd3;
-      font-size: 13px;
-      line-height: 1.7;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: 65px;
-    }
-
-    .btn-space {
-      background: #536fff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 9px 17px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .btn-space:hover {
-      background: #7188ff;
-      color: white;
-    }
-
-    .page-link {
-      background: #111a30;
-      border-color: #293858;
-      color: #c9d5f5;
-      cursor: pointer;
-    }
-
-    .page-link:hover {
-      background: #536fff;
-      color: white;
-    }
-
-    .page-item.disabled .page-link {
-      background: #111a30;
-      color: #56627a;
-      border-color: #293858;
-    }
-
-    .modal-content {
-      background: #111a30;
-      color: white;
-      border: 1px solid #344568;
-    }
-
-    .modal-header {
-      border-bottom-color: #293858;
-    }
-
-    .modal-footer {
-      border-top-color: #293858;
-    }
-
-    .modal-description {
-      color: #b8c4df;
-      font-size: 14px;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-
-    .loading {
-      color: #aebbd3;
-      padding: 70px 0;
-    }
-
-    footer {
-      background: #0c1428;
-      border-top: 1px solid #202d4b;
-      color: #8493b1;
-    }
-
-    .accent {
-      color: #8ca8ff;
-    }
-  </style>
+/* MODAL */
+.modal-content{background:var(--blue);border:1px solid var(--gold);color:var(--text)}
+.modal-header,.modal-footer{border-color:var(--line)}
+.m-desc{color:#c5d0ee;line-height:1.8;font-size:14px;white-space:pre-line}
+.loading{color:var(--mute);padding:70px 0;text-align:center}
+.spin{width:38px;height:38px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:s 1s linear infinite;margin:0 auto 14px}
+@keyframes s{to{transform:rotate(360deg)}}
+footer{background:#030816;border-top:1px solid var(--goldd);color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-
 <body>
+<canvas id="stars" aria-hidden="true"></canvas>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand brand" href="#">✦ NASA EXPLORER</a>
-      <span class="text-secondary small">DISCOVER THE UNIVERSE</span>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand sticky-top">
+  <div class="container">
+    <a class="navbar-brand brand" href="#top">✦ NASA EXPLORER</a>
+    <ul class="navbar-nav ms-auto flex-row gap-3">
+      <li class="nav-item"><a class="nav-link" href="#explore" onclick="setTab('apod')">ARCHIVE</a></li>
+      <li class="nav-item"><a class="nav-link" href="#explore" onclick="setTab('lib')">IMAGE LIBRARY</a></li>
+      <li class="nav-item"><a class="nav-link" href="#explore" onclick="setTab('neo')">ASTEROID WATCH</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="container">
-      <div class="section-label mb-3">ASTRONOMY PICTURE OF THE DAY</div>
-
-      <h1>Explore Beyond<br>Our World.</h1>
-
-      <p class="mt-3">
-        Discover the beauty of the universe through NASA's daily
-        collection of astronomical photographs, galaxies, planets,
-        and extraordinary cosmic discoveries.
-      </p>
-
-      <a href="#discoveries" class="btn btn-space mt-3">
-        Explore Discoveries →
-      </a>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main class="container py-5" id="discoveries">
-
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
-      <div>
-        <div class="section-label">THE COSMOS COLLECTION</div>
-        <h2 class="fw-bold mt-2">Space Discoveries</h2>
-        <p class="text-secondary small mb-0">
-          Explore NASA's featured astronomical images.
-        </p>
-      </div>
-
-      <div class="text-end">
-        <div class="text-secondary small">CURRENT PAGE</div>
-        <div class="accent fw-bold fs-5" id="currentPage">1</div>
-      </div>
-    </div>
-
-    <!-- PAGINATION -->
-    <nav aria-label="Page navigation" class="mb-4">
-      <ul class="pagination">
-        <li class="page-item" id="prevButton">
-          <a class="page-link" onclick="prev()">← Previous</a>
-        </li>
-
-        <li class="page-item active">
-          <span class="page-link" id="pageNumber">1</span>
-        </li>
-
-        <li class="page-item">
-          <a class="page-link" onclick="next()">Next →</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- API RESULTS -->
-    <div class="row g-4" id="parent">
-      <div class="col-12 text-center loading">
-        <div class="spinner-border text-primary mb-3"></div>
-        <p>Connecting to NASA...</p>
-      </div>
-    </div>
-
-    <div class="text-center mt-5">
-      <small class="text-secondary">
-        Data provided by NASA Astronomy Picture of the Day API
-      </small>
-    </div>
-
-  </main>
-
-  <!-- DETAILS MODAL -->
-  <div class="modal fade" id="detailsModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="modalTitle">Discovery Details</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-
-        <div class="modal-body">
-          <div id="modalMedia" class="mb-3"></div>
-
-          <div class="accent small mb-2" id="modalDate"></div>
-
-          <p class="modal-description" id="modalDescription"></p>
-
-          <div id="copyright" class="text-secondary small"></div>
-        </div>
-
-        <div class="modal-footer">
-          <a href="#" target="_blank" id="originalLink" class="btn btn-space">
-            View Original →
-          </a>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-        </div>
-
-      </div>
+<!-- HERO: today's Astronomy Picture of the Day -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="kicker" id="heroKick">ASTRONOMY PICTURE OF THE DAY</div>
+    <h1 id="heroTitle">Explore Beyond<br>Our World.</h1>
+    <div class="hero-meta" id="heroMeta"></div>
+    <p id="heroText">Connecting to NASA to fetch today's picture of the universe…</p>
+    <div class="d-flex gap-2 mt-4 flex-wrap">
+      <button class="btn btn-gold" id="heroBtn" disabled>Read the story</button>
+      <a href="#explore" class="btn btn-ghost">Explore the collection</a>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="py-4 mt-4">
-    <div class="container text-center">
-      <div class="brand mb-2">NASA EXPLORER</div>
-      <small>Bringing the wonders of space closer to you.</small>
-      <p class="small mt-2 mb-0">Powered by NASA Open APIs | APOD</p>
+<!-- LIVE STATS from NeoWs -->
+<section class="stats">
+  <div class="container"><div class="row g-0">
+    <div class="col-6 col-md-3 stat"><b id="sTotal">–</b><span>Asteroids passing Earth today</span></div>
+    <div class="col-6 col-md-3 stat"><b id="sHaz">–</b><span>Flagged potentially hazardous</span></div>
+    <div class="col-6 col-md-3 stat"><b id="sClose">–</b><span>Closest approach (lunar distances)</span></div>
+    <div class="col-6 col-md-3 stat"><b id="sFast">–</b><span>Fastest object (km/s)</span></div>
+  </div></div>
+</section>
+
+<main class="container py-5" id="explore">
+  <div class="mb-4">
+    <h2 class="sec">The Cosmos Collection</h2>
+    <p class="text-secondary mb-0">Daily astronomy, NASA's image archive, and objects flying past Earth right now.</p>
+  </div>
+
+  <div class="tabs mb-4" role="tablist">
+    <button class="tab on" id="t-apod" onclick="setTab('apod')">Daily Archive</button>
+    <button class="tab" id="t-lib" onclick="setTab('lib')">Image Library</button>
+    <button class="tab" id="t-neo" onclick="setTab('neo')">Asteroid Watch</button>
+  </div>
+
+  <!-- APOD ARCHIVE -->
+  <section id="p-apod">
+    <nav aria-label="Archive pages" class="mb-4"><ul class="pagination mb-0">
+      <li class="page-item" id="prevBtn"><a class="page-link" onclick="prev()">← Newer</a></li>
+      <li class="page-item active"><span class="page-link" id="pageNum">1</span></li>
+      <li class="page-item"><a class="page-link" onclick="next()">Older →</a></li>
+    </ul></nav>
+    <div class="bento" id="apodGrid"></div>
+  </section>
+
+  <!-- IMAGE LIBRARY -->
+  <section id="p-lib" hidden>
+    <form class="search mb-3" onsubmit="event.preventDefault();searchLib(q.value)">
+      <input id="q" type="search" placeholder="Search nebulae, Apollo, Mars, Webb…" aria-label="Search NASA images">
+      <button class="btn btn-gold">Search</button>
+    </form>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <button class="chip" onclick="searchLib('Webb telescope')">Webb telescope</button>
+      <button class="chip" onclick="searchLib('Apollo 11')">Apollo 11</button>
+      <button class="chip" onclick="searchLib('Mars rover')">Mars rover</button>
+      <button class="chip" onclick="searchLib('Saturn rings')">Saturn rings</button>
+      <button class="chip" onclick="searchLib('Artemis')">Artemis</button>
+      <button class="chip" onclick="searchLib('Aurora')">Aurora</button>
     </div>
-  </footer>
-
-  <!-- BOOTSTRAP JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-
-    // NASA API CONFIGURATION
-    const apiKey = 'DEMO_KEY';
-    const apiURL = 'https://api.nasa.gov/planetary/apod';
-
-    // PAGINATION SETTINGS
-    var page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
-    var perPageLoad = 6;
-
-    var elParent = document.getElementById("parent");
-    var elCurrentPage = document.getElementById("currentPage");
-    var elPageNumber = document.getElementById("pageNumber");
-
-    var discoveries = [];
-
-    // FORMAT DATE AS YYYY-MM-DD
-    function formatDate(date) {
-      return date.toISOString().split('T')[0];
-    }
-
-    // ESCAPE API TEXT BEFORE DISPLAYING IT
-    function escapeHTML(text) {
-      return String(text || '').replace(/[&<>"']/g, function(char) {
-        return {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        }[char];
-      });
-    }
-
-    // GET NASA DISCOVERIES
-    const getDiscoveries = async () => {
-
-      elParent.innerHTML = `
-        <div class="col-12 text-center loading">
-          <div class="spinner-border text-primary mb-3"></div>
-          <p>Discovering the universe...</p>
-        </div>
-      `;
-
-      elCurrentPage.innerHTML = page;
-      elPageNumber.innerHTML = page;
-
-      document.getElementById("prevButton").classList.toggle("disabled", page === 1);
-
-      // Calculate date range for each page
-      var endDate = new Date();
-      endDate.setUTCHours(0, 0, 0, 0);
-      endDate.setUTCDate(endDate.getUTCDate() - ((page - 1) * perPageLoad));
-
-      var startDate = new Date(endDate);
-      startDate.setUTCDate(startDate.getUTCDate() - (perPageLoad - 1));
-
-      var start = formatDate(startDate);
-      var end = formatDate(endDate);
-
-      var url = apiURL +
-        '?api_key=' + apiKey +
-        '&start_date=' + start +
-        '&end_date=' + end;
-
-      try {
-
-        var response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error('NASA API returned an error: ' + response.status);
-        }
-
-        var data = await response.json();
-
-        // Display newest discoveries first
-        discoveries = data.reverse();
-
-        elParent.innerHTML = '';
-
-        if (discoveries.length === 0) {
-          elParent.innerHTML = `
-            <div class="col-12 text-center text-secondary py-5">
-              No discoveries found for this period.
-            </div>
-          `;
-          return;
-        }
-
-        // Display NASA discoveries
-        for (var i = 0; i < discoveries.length; i++) {
-
-          var discovery = discoveries[i];
-
-          var title = escapeHTML(discovery.title);
-          var date = escapeHTML(discovery.date);
-          var explanation = escapeHTML(discovery.explanation);
-
-          var picture = discovery.media_type === 'video'
-            ? (discovery.thumbnail_url || '')
-            : discovery.url;
-
-          var imageHTML = picture
-            ? `<img src="${escapeHTML(picture)}" class="discovery-image" alt="${title}" loading="lazy">`
-            : `<div class="discovery-image d-flex align-items-center justify-content-center text-secondary">Preview unavailable</div>`;
-
-          elParent.innerHTML += `
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="discovery-card">
-
-                ${imageHTML}
-
-                <div class="card-content">
-
-                  <div class="discovery-date mb-2">
-                    ✦ ${date}
-                  </div>
-
-                  <div class="discovery-title mb-2">
-                    ${title}
-                  </div>
-
-                  <p class="description">
-                    ${explanation}
-                  </p>
-
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-
-                    <span class="badge rounded-pill text-bg-dark border border-secondary">
-                      ${discovery.media_type === 'video' ? 'VIDEO' : 'IMAGE'}
-                    </span>
-
-                    <button class="btn btn-space"
-                      onclick="showDetails(${i})">
-                      View Details →
-                    </button>
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          `;
-        }
-
-      } catch (error) {
-
-        elParent.innerHTML = `
-          <div class="col-12 text-center py-5">
-            <h5 class="text-danger">Unable to load discoveries.</h5>
-            <p class="text-secondary">${escapeHTML(error.message)}</p>
-            <button class="btn btn-space" onclick="getDiscoveries()">
-              Try Again
-            </button>
-          </div>
-        `;
-
-        console.error(error);
-      }
-    };
-
-    // SHOW DISCOVERY DETAILS
-    function showDetails(index) {
-
-      var discovery = discoveries[index];
-
-      document.getElementById("modalTitle").innerHTML =
-        escapeHTML(discovery.title);
-
-      document.getElementById("modalDate").innerHTML =
-        'DISCOVERY DATE: ' + escapeHTML(discovery.date);
-
-      document.getElementById("modalDescription").innerHTML =
-        escapeHTML(discovery.explanation);
-
-      document.getElementById("copyright").innerHTML =
-        discovery.copyright
-          ? '© ' + escapeHTML(discovery.copyright)
-          : 'Image credit: NASA';
-
-      var media = '';
-
-      if (discovery.media_type === 'video') {
-
-        media = `
-          <iframe
-            src="${escapeHTML(discovery.url)}"
-            class="w-100"
-            style="height:400px; border:0;"
-            allowfullscreen>
-          </iframe>
-        `;
-
-      } else {
-
-        media = `
-          <img
-            src="${escapeHTML(discovery.hdurl || discovery.url)}"
-            class="img-fluid rounded"
-            alt="${escapeHTML(discovery.title)}">
-        `;
-      }
-
-      document.getElementById("modalMedia").innerHTML = media;
-
-      document.getElementById("originalLink").href = discovery.url;
-
-      var modal = new bootstrap.Modal(
-        document.getElementById("detailsModal")
-      );
-
-      modal.show();
-    }
-
-    // PREVIOUS PAGE
-    function prev() {
-
-      if (page > 1) {
-        page--;
-        updatePage();
-      }
-    }
-
-    // NEXT PAGE
-    function next() {
-
-      page++;
-      updatePage();
-    }
-
-    // UPDATE PAGE AND URL
-    function updatePage() {
-
-      var newURL = new URL(window.location.href);
-      newURL.searchParams.set('page', page);
-
-      history.pushState({}, '', newURL);
-
-      getDiscoveries();
-
-      window.scrollTo({
-        top: document.getElementById("discoveries").offsetTop - 90,
-        behavior: 'smooth'
-      });
-    }
-
-    // HANDLE BROWSER BACK AND FORWARD
-    window.addEventListener('popstate', function() {
-
-      page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
-
-      getDiscoveries();
-    });
-
-    // INITIALIZE WEBSITE
-    getDiscoveries();
-
-  </script>
-
+    <div class="bento" id="libGrid"></div>
+  </section>
+
+  <!-- ASTEROID WATCH -->
+  <section id="p-neo" hidden>
+    <div class="neo"><div class="table-responsive">
+      <table class="table align-middle">
+        <thead><tr><th>OBJECT</th><th>DIAMETER</th><th>SPEED</th><th>MISS DISTANCE</th><th>STATUS</th></tr></thead>
+        <tbody id="neoBody"><tr><td colspan="5" class="loading">Scanning near-Earth space…</td></tr></tbody>
+      </table>
+    </div></div>
+    <small class="text-secondary d-block mt-3">Distance shown in lunar distances (1 LD ≈ 384,400 km). Bar length compares how close each object passes.</small>
+  </section>
+
+  <div class="text-center mt-5"><small class="text-secondary">Data from NASA APOD, NeoWs and the NASA Image &amp; Video Library</small></div>
+</main>
+
+<!-- DETAILS MODAL -->
+<div class="modal fade" id="dm" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title fw-bold" id="mT"></h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button></div>
+    <div class="modal-body">
+      <div id="mMedia" class="mb-3"></div>
+      <div class="c-date mb-2" id="mD"></div>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="text-secondary small" id="mC"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" target="_blank" rel="noopener" id="mL" class="btn btn-gold">View original</a>
+      <button class="btn btn-ghost" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div></div>
+</div>
+
+<footer class="py-4"><div class="container text-center">
+  <div class="brand mb-2">NASA EXPLORER</div>
+  <small>Bringing the wonders of space closer to you.</small>
+  <p class="small mt-2 mb-0">Powered by NASA Open APIs</p>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ---------- CONFIG (swap DEMO_KEY for your own free key at api.nasa.gov) ----------
+const KEY = 'DEMO_KEY', BASE = 'https://api.nasa.gov';
+const PER = 6;
+let page = parseInt(new URLSearchParams(location.search).get('page')) || 1;
+let items = [], libItems = [], heroData = null;
+const $ = id => document.getElementById(id);
+const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso = d => d.toISOString().split('T')[0];
+const fmt = n => Number(n).toLocaleString(undefined, {maximumFractionDigits: 1});
+const spinner = m => `<div class="col-12 loading"><div class="spin"></div><p>${m}</p></div>`;
+const fail = (fn, msg) => `<div class="col-12 text-center py-5"><h5 class="text-warning">Unable to load data.</h5>
+  <p class="text-secondary">${esc(msg)}</p><button class="btn btn-gold" onclick="${fn}">Try again</button></div>`;
+
+// ---------- STARFIELD ----------
+(function(){
+  const c = $('stars'), x = c.getContext('2d'); let s = [];
+  function init(){ c.width = innerWidth; c.height = innerHeight;
+    s = Array.from({length: Math.min(160, innerWidth / 8)}, () => ({x: Math.random()*c.width, y: Math.random()*c.height,
+      r: Math.random()*1.4+.2, v: Math.random()*.15+.03, g: Math.random() < .18}));
+  }
+  function draw(){ x.clearRect(0,0,c.width,c.height);
+    for (const p of s){ x.fillStyle = p.g ? 'rgba(245,196,81,.8)' : 'rgba(190,210,255,.7)';
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,6.3); x.fill(); p.y += p.v; if (p.y > c.height) { p.y = 0; p.x = Math.random()*c.width; } }
+    if (!matchMedia('(prefers-reduced-motion:reduce)').matches) requestAnimationFrame(draw);
+  }
+  addEventListener('resize', init); init(); draw();
+})();
+
+// ---------- TABS ----------
+function setTab(n){
+  ['apod','lib','neo'].forEach(k => { $('p-'+k).hidden = k !== n; $('t-'+k).classList.toggle('on', k === n); });
+  if (n === 'lib' && !libItems.length) searchLib('Webb telescope');
+  if (n === 'neo' && !$('neoBody').dataset.done) loadNeo();
+}
+
+// ---------- HELPERS ----------
+const TAGS=[[/galax/i,'Galaxy'],[/nebula/i,'Nebula'],[/mars/i,'Mars'],[/moon|lunar|apollo/i,'Moon'],[/\bsun\b|solar/i,'Sun'],[/comet|asteroid/i,'Small bodies'],
+  [/aurora|earth/i,'Earth'],[/jupiter|saturn|planet/i,'Planets'],[/telescope|webb|hubble|observatory|swift/i,'Observatory'],[/rocket|launch|artemis|mission|spacecraft|satellite/i,'Mission']];
+const tagOf=t=>(TAGS.find(([r])=>r.test(t))||[0,'Cosmos'])[1];
+const nice=s=>{const d=new Date(s+'T00:00:00');return isNaN(d)?(s||''):d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})};
+const gist=(t,n)=>{t=t.replace(/\s+/g,' ').trim();if(t.length<=n)return t;const c=t.slice(0,n),i=c.lastIndexOf(' ');return c.slice(0,i>n*.5?i:n).replace(/[.,;:]$/,'')+'…'};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const PAT=['feat','std','tall','std','wide','std','std','tall'];
+const TOPICS=['Webb telescope','Hubble nebula','Mars rover','Artemis moon','Saturn Cassini','Aurora earth','Galaxy cluster','Jupiter Juno','Apollo','Comet'];
+
+// ---------- MODAL ----------
+function openModal(o){
+  $('mT').textContent=o.title; $('mD').textContent=nice(o.date); $('mDesc').textContent=o.desc;
+  $('mC').textContent=o.credit||''; $('mL').href=o.link||'#';
+  $('mMedia').innerHTML=o.video
+    ? `<iframe src="${esc(o.big)}" class="w-100" style="height:400px;border:0" allowfullscreen title="${esc(o.title)}"></iframe>`
+    : `<img src="${esc(o.big||o.img)}" data-f="${esc(o.img)}" onerror="this.onerror=null;this.src=this.dataset.f" class="img-fluid rounded" alt="${esc(o.title)}">`;
+  bootstrap.Modal.getOrCreateInstance($('dm')).show();
+}
+const openA=i=>openModal(items[i]), openL=i=>openModal(libItems[i]);
+
+// ---------- DATA -> ENTRIES ----------
+const apodEntry=d=>({src:'APOD',title:d.title,date:d.date,desc:d.explanation||'',video:d.media_type==='video',
+  img:d.media_type==='video'?(d.thumbnail_url||''):d.url,big:d.media_type==='video'?d.url:(d.hdurl||d.url),
+  credit:d.copyright?'© '+d.copyright.trim():'Image credit: NASA',link:d.url});
+const libEntry=it=>{const d=it.data[0],t=it.links[0].href;
+  return {src:'NASA Library',title:d.title,date:(d.date_created||'').slice(0,10),desc:(d.description||'').replace(/<[^>]+>/g,''),
+    img:t,big:t.replace('~thumb','~large'),credit:'Credit: '+(d.photographer||d.secondary_creator||d.center||'NASA'),link:t}};
+async function libSearch(term){
+  const r=await fetch('https://images-api.nasa.gov/search?media_type=image&q='+encodeURIComponent(term));
+  if(!r.ok)throw new Error('Library returned '+r.status);
+  return ((await r.json()).collection.items||[]).filter(i=>i.links&&i.data).map(libEntry);
+}
+// drop generic placeholders ("NASA Science") and duplicate entries
+function clean(list){const seen=new Set();
+  return list.filter(d=>{const k=((d.title||'')+(d.explanation||'')).slice(0,120);
+    if(seen.has(k)||/^nasa science$/i.test((d.title||'').trim()))return false;seen.add(k);return true;});}
+
+// ---------- CARD (layout varies per position) ----------
+function card(e,i,fn){
+  const v=PAT[(i+(fn==='openA'?page:2))%PAT.length], n=v==='feat'?230:v==='wide'?140:105;
+  return `<article class="bc ${v} t-${(i+page)%3}" tabindex="0" role="button" onclick="${fn}(${i})" onkeydown="if(event.key==='Enter')this.click()">
+    ${e.img?`<img src="${esc(e.img)}" alt="${esc(e.title)}" loading="lazy">`:''}
+    <div class="bc-t"><span class="tag">${tagOf(e.title+' '+e.desc)}</span><h3>${esc(e.title)}</h3>
+    <p>${esc(gist(e.desc,n))}</p><small>${nice(e.date)} · ${e.video?'Video · ':''}${e.src}</small></div></article>`;
+}
+
+// ---------- HERO ----------
+async function loadHero(){
+  let e=null;
+  try{const r=await fetch(`${BASE}/planetary/apod?api_key=${KEY}&thumbs=true`);
+    if(r.ok){const d=await r.json();if(!/^nasa science$/i.test((d.title||'').trim())&&(d.hdurl||d.url||d.thumbnail_url))e=apodEntry(d);}}catch{}
+  if(!e){try{const l=(await libSearch(pick(['nebula','galaxy','Webb deep field','Hubble','aurora from space','Saturn','Mars surface']))).filter(x=>x.img);
+    e=l[Math.floor(Math.random()*Math.min(l.length,8))];}catch{}}
+  if(!e){$('heroText').textContent="Today's picture isn't available right now, but the collection below is.";return;}
+  const setBg=u=>document.querySelector('.hero').style.setProperty('--hero-img',`url("${u}")`);
+  const im=new Image();im.onload=()=>setBg(e.big);im.onerror=()=>e.img&&setBg(e.img);im.src=e.big||e.img;
+  $('heroKick').textContent=e.src==='APOD'?'ASTRONOMY PICTURE OF THE DAY':'FROM THE NASA ARCHIVE';
+  $('heroTitle').textContent=e.title; $('heroMeta').textContent=nice(e.date)+(e.credit?' · '+e.credit:'');
+  $('heroText').textContent=gist(e.desc,260)||'Open the story to learn more.';
+  $('heroBtn').disabled=false;$('heroBtn').onclick=()=>openModal(e);
+}
+
+// ---------- ARCHIVE (APOD, backfilled from the Image Library) ----------
+async function loadApod(){
+  $('apodGrid').innerHTML=spinner('Discovering the universe…');
+  $('pageNum').textContent=page;$('prevBtn').classList.toggle('disabled',page===1);
+  const end=new Date();end.setUTCHours(0,0,0,0);end.setUTCDate(end.getUTCDate()-(page-1)*PER);
+  const start=new Date(end);start.setUTCDate(start.getUTCDate()-(PER-1));
+  try{
+    let list=[];
+    try{const r=await fetch(`${BASE}/planetary/apod?api_key=${KEY}&thumbs=true&start_date=${iso(start)}&end_date=${iso(end)}`);
+      if(r.ok)list=clean((await r.json()).reverse()).map(apodEntry);}catch{}
+    if(list.length<PER){const l=await libSearch(TOPICS[(page-1)%TOPICS.length]),need=PER-list.length,off=((page-1)*3)%Math.max(1,l.length-need);
+      list=list.concat(l.slice(off,off+need));}
+    items=list;
+    $('apodGrid').innerHTML=items.map((e,i)=>card(e,i,'openA')).join('')||'<div class="col-12 text-center text-secondary py-5">Nothing for this page yet.</div>';
+  }catch(e){$('apodGrid').innerHTML=fail('loadApod()',e.message);}
+}
+function prev(){if(page>1){page--;turn();}}
+function next(){page++;turn();}
+function turn(){const u=new URL(location.href);u.searchParams.set('page',page);history.pushState({},'',u);loadApod();
+  scrollTo({top:$('explore').offsetTop-80,behavior:'smooth'});}
+addEventListener('popstate',()=>{page=parseInt(new URLSearchParams(location.search).get('page'))||1;loadApod();});
+
+// ---------- IMAGE LIBRARY ----------
+async function searchLib(term){
+  term=(term||'').trim();if(!term)return;$('q').value=term;
+  $('libGrid').innerHTML=spinner('Searching NASA archives…');
+  try{libItems=(await libSearch(term)).slice(0,12);
+    $('libGrid').innerHTML=libItems.length?libItems.map((e,i)=>card(e,i,'openL')).join(''):'<div class="col-12 text-center text-secondary py-5">No results. Try another search term.</div>';
+  }catch(e){$('libGrid').innerHTML=fail(`searchLib('${esc(term)}')`,e.message);}
+}
+
+// ---------- ASTEROID WATCH (NeoWs) ----------
+async function loadNeo(){
+  const today = iso(new Date());
+  try {
+    const r = await fetch(`${BASE}/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${KEY}`);
+    if (!r.ok) throw new Error('NeoWs returned ' + r.status);
+    const j = await r.json(), list = Object.values(j.near_earth_objects).flat().map(o => {
+      const a = o.close_approach_data[0];
+      return {name:o.name.replace(/[()]/g,''), haz:o.is_potentially_hazardous_asteroid, url:o.nasa_jpl_url,
+        d:(o.estimated_diameter.meters.estimated_diameter_min + o.estimated_diameter.meters.estimated_diameter_max)/2,
+        v:+a.relative_velocity.kilometers_per_second, ld:+a.miss_distance.lunar};
+    }).sort((a,b) => a.ld - b.ld);
+    $('sTotal').textContent = list.length; $('sHaz').textContent = list.filter(o => o.haz).length;
+    if (list.length){ $('sClose').textContent = fmt(list[0].ld); $('sFast').textContent = fmt(Math.max(...list.map(o => o.v))); }
+    const max = Math.max(...list.map(o => o.ld), 1);
+    $('neoBody').innerHTML = list.slice(0, 12).map(o => `<tr>
+      <td><a class="text-decoration-none" style="color:var(--gold2)" href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a></td>
+      <td>${fmt(o.d)} m</td><td>${fmt(o.v)} km/s</td>
+      <td><div>${fmt(o.ld)} LD</div><div class="bar"><i style="width:${Math.max(4, 100 - (o.ld / max) * 100)}%"></i></div></td>
+      <td class="${o.haz ? 'haz' : 'safe'}">${o.haz ? 'Hazardous' : 'Safe pass'}</td></tr>`).join('');
+    $('neoBody').dataset.done = 1;
+  } catch (e) { $('neoBody').innerHTML = `<tr><td colspan="5" class="text-center py-4 text-warning">${esc(e.message)} — <a href="#" style="color:var(--gold)" onclick="loadNeo();return false">try again</a></td></tr>`; }
+}
+
+// ---------- INIT ----------
+loadHero(); loadApod(); loadNeo();
+</script>
 </body>
 </html>
